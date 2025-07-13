@@ -1,0 +1,17 @@
+name: "fast_blog"
+
+services:
+  application:
+    container_name: "Application"
+    build: "./Application/."
+    volumes:
+      - "./Application:/Application"
+    ports:
+      - "8000:8000"
+    command: sh -c "python main.py"
+    networks:
+      - FastBlog
+
+networks:
+  FastBlog:
+    driver: bridge
