@@ -10,6 +10,7 @@ engine = create_engine(
         "USER": "root",
         "PASSWORD": "M.1029384756.m",
         "PORT": 3306,
+        "DATABASE": "fast_blog",
     },
 )
 SessionLocal = sessionmaker(bind=engine, autocommit=False, autoflush=False)
