@@ -1,6 +1,16 @@
 name: "fast_blog"
 
 services:
+  my_sql_db:
+    container_name: "MysqlDB"
+    image: "mysql:latest"
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: "M.1029384756.m"
+    networks:
+      - FastBlog
+
   application:
     container_name: "Application"
     build: "./Application/."
@@ -11,6 +21,8 @@ services:
     command: sh -c "python main.py"
     networks:
       - FastBlog
+    depends_on:
+      - my_sql_db
 
 networks:
   FastBlog:
