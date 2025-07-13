@@ -9,7 +9,7 @@ engine = create_engine(
         "check_same_thread": False,
         "USER": "root",
         "PASSWORD": "M.1029384756.m",
-        "PORT": 3306
+        "PORT": 3306,
     },
 )
 SessionLocal = sessionmaker(bind=engine, autocommit=False, autoflush=False)
