@@ -1,26 +1,21 @@
-from sqlalchemy import create_engine
-from sqlalchemy.orm import declarative_base, sessionmaker
+from sqlalchemy.ext.asyncio import async_sessionmaker, create_async_engine
+from sqlalchemy.orm import DeclarativeBase, MappedAsDataclass
 
-DATABASE_URL = "my_sql_db"
+DATABASE_URL = "mysql+aiomysql://root:M.1029384756.m@my_sql_db:3306/fast_blog"
 
-engine = create_engine(
+engine = create_async_engine(
     DATABASE_URL,
-    connect_args={
-        "check_same_thread": False,
-        "USER": "root",
-        "PASSWORD": "M.1029384756.m",
-        "PORT": 3306,
-        "DATABASE": "fast_blog",
-    },
 )
-SessionLocal = sessionmaker(bind=engine, autocommit=False, autoflush=False)
-
-Base = declarative_base()
+SessionLocal = async_sessionmaker(bind=engine, autocommit=False, autoflush=False)
 
 
-def get_db():
+class Base(DeclarativeBase, MappedAsDataclass):
+    pass
+
+
+async def get_db():
     db = SessionLocal()
     try:
         yield db
     finally:
-        db.close()
+        await db.close()

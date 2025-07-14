@@ -7,7 +7,8 @@ services:
     ports:
       - "3307:3306"
     environment:
-      MYSQL_ROOT_PASSWORD: "M.1029384756.m"
+      MYSQL_DATABASE: fast_blog
+      MYSQL_ROOT_PASSWORD: M.1029384756.m
     networks:
       - FastBlog
 
